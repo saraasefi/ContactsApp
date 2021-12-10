@@ -22,6 +22,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to read data from database and populate data into recycler view
+ * it also allows user to insert new data into data base using floating action button
+ * and through a dialog box
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public class ContactsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -29,6 +36,10 @@ public class ContactsActivity extends AppCompatActivity {
     private ContactAdapter contactAdapter;
     private ArrayList<PersonModel> contactArrayList;
 
+    /**
+     * initializing ContactsActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +80,9 @@ public class ContactsActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * this method will wire the listener to the add button (+)
+         */
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +150,11 @@ public class ContactsActivity extends AppCompatActivity {
         recyclerView.setAdapter(contactAdapter);
     }
 
+    /**
+     * this method menu will inflate the option menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -143,6 +162,11 @@ public class ContactsActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * this method determine with option of the menu is selected
+     * @param item
+     * @return selected item
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

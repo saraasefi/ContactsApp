@@ -13,12 +13,22 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+/**
+ * This class is used to show detail for a selected contact and allowing user to update or delete
+ * the contact
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public class Edit_Delete_Item extends AppCompatActivity {
 
     private EditText first_name, last_name, phone, email, note;
     private Button btnDelete, btnUpdate;
     int ID;
 
+    /**
+     * initializing the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +55,9 @@ public class Edit_Delete_Item extends AppCompatActivity {
         email.setText(intent.getExtras().getString("Email"));
         note.setText(intent.getExtras().getString("Note"));
 
+        /**
+         * this method will wire the listener to the update button
+         */
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +77,9 @@ public class Edit_Delete_Item extends AppCompatActivity {
             }
         });
 
+        /**
+         * this method will wire the listener to the delete button
+         */
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,6 +99,11 @@ public class Edit_Delete_Item extends AppCompatActivity {
 
     }
 
+    /**
+     * this method menu will inflate the option menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -90,6 +111,11 @@ public class Edit_Delete_Item extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * this method determine with option of the menu is selected
+     * @param item
+     * @return selected item
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

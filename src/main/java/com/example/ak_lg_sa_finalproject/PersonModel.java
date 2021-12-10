@@ -1,5 +1,10 @@
 package com.example.ak_lg_sa_finalproject;
 
+/**
+ * This class is used as data source for a Person object
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public final class PersonModel {
     private int id;
     private String first_name;

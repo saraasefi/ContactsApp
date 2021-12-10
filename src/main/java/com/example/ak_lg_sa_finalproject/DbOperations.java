@@ -13,6 +13,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is used to handle database operations including creating database, table, and CRUD
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public class DbOperations extends SQLiteOpenHelper {
     private static final int DB_version = 1;
     private static final String DB_name = "person_info.db";
@@ -31,7 +36,10 @@ public class DbOperations extends SQLiteOpenHelper {
         super(ctx, DB_name, null, DB_version);
     }
 
-    // creating a database by running a sqlite query
+    /**
+     * creating a database by running a sqlite query
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -44,14 +52,22 @@ public class DbOperations extends SQLiteOpenHelper {
 
     }
 
-    // if newer version of database is available android executes onUpgrade method.
+    /**
+     * if newer version of database is available android executes onUpgrade method.
+     * @param db
+     * @param i
+     * @param i1
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " +PERSON_TABLE);
         onCreate(db);
     }
 
-    // add new Person Record to SQLite Database
+    /**
+     * add new Person Record to SQLite Database
+     * @param personModel
+     */
     public void addRecord(PersonModel personModel){
 
         // calling writable method as we are writing data in our database.
@@ -73,15 +89,20 @@ public class DbOperations extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Read data from Person Table
+    /**
+     * Read data from Person Table
+     * @return
+     */
     public List<PersonModel> viewRecords(){
 
         ArrayList<PersonModel> viewList = new ArrayList<>();
 
         String queryString = "SELECT * FROM " + PERSON_TABLE;
 
+        // calling a method to get readable database.
         SQLiteDatabase db = this.getReadableDatabase();
 
+        //creating a cursor to loops through table and reads data
         Cursor cursor = db.rawQuery(queryString,null);
 
         if(cursor.moveToFirst())
@@ -94,7 +115,9 @@ public class DbOperations extends SQLiteOpenHelper {
                 String email = cursor.getString(4);
                 String note = cursor.getString(5);
 
-                PersonModel personModel = new PersonModel(personID,first_name, last_name,phone,email,note);
+                PersonModel personModel = new PersonModel(personID,first_name, last_name,
+                                                            phone,email,note);
+                //adding data (Person object) to arraylist
                 viewList.add(personModel);
 
             }while (cursor.moveToNext());
@@ -103,7 +126,15 @@ public class DbOperations extends SQLiteOpenHelper {
         return viewList;
     }
 
-    // Update a Person Record
+    /**
+     * Update a Person Record
+     * @param ID
+     * @param f_name
+     * @param l_name
+     * @param phone
+     * @param email
+     * @param note
+     */
     public void updateRecord(int ID, String f_name, String l_name, String phone,
                              String email, String note) {
 
@@ -126,7 +157,10 @@ public class DbOperations extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Delete a record from Person Table
+    /**
+     * Delete a record from Person Table
+     * @param id
+     */
     public void deleteRecord(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();

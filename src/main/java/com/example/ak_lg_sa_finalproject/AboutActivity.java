@@ -11,6 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ * This class is used to trigger the activity_about and fragment_about layouts
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public class AboutActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +29,11 @@ public class AboutActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * this method menu will inflate the option menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -31,6 +41,11 @@ public class AboutActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     * this method determine with option of the menu is selected
+     * @param item
+     * @return selected item
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

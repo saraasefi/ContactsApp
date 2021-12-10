@@ -12,6 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to create a recyclerView adapter and implement methods needed for
+ * rendering and populating data in recyclerV iew
+ * @author Sara Asefi
+ * @version 1.0
+ */
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     //Store a member variable for PersonModel and context
@@ -25,6 +31,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         this.context = context;
     }
 
+    /**
+     * this method will Inflate the item layout and create the holder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +50,11 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         return viewHolder;
     }
 
+    /**
+     * this method will set the view attributes based on the data
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -56,7 +73,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         });
     }
 
-    //Returns the total count of item in the list
+    /**
+     * this method will Determine the number of items.
+     * @return
+     */
     @Override
     public int getItemCount() {
         return contactArrayList.size();
@@ -77,11 +97,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    interface  ClickListener<PersonModel>{
+    /**
+     * create Click Listener interface
+     * @param <PersonModel>
+     */
+    interface ClickListener<PersonModel>{
         void onItemClick(PersonModel data);
     }
 
 
+    /**
+     * Create clickListener instance and create setOnItemClickListener method to attach the
+     * click listener.
+     * @param contactClickListener
+     */
     public void setOnItemClickListener(ClickListener<PersonModel> contactClickListener)
     {
         this.clickListener = contactClickListener;
